@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 21:13:41 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:46:41 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int	is_lines_equals(char const *map_buf);
 int	is_map_closed(char const *map_buf);
 
 // map_parser.c
+void	map_free(t_map *map);
 void	map_parse(t_map *map, char const *map_buf);
 #endif

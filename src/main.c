@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 21:38:37 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:45:29 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,5 @@ int	main(int argc, char *argv[])
 	ft_printf("Is map closed : ✅\n");
 	map_parse(&map, map_buf);
 	free(map_buf);
+	map_free(&map);
 }

@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 21:14:01 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 21:39:14 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:47:04 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ static ssize_t	get_height(char const *map_buf)
 static char	**map_split(char const *map_buf)
 {
 	return (ft_split(map_buf, '\n'));
+}
+
+void	map_free(t_map *map)
+{
+	ssize_t	y;
+
+	y = 0;
+	while (y < map->height)
+	{
+		free(map->map[y]);
+		y++;
+	}
+	free(map->map);
 }
 
 void	map_parse(t_map *map, char const *map_buf)
