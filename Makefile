@@ -1,10 +1,11 @@
 NAME := so_long
 
-SRC := src/main.c
+SRC := src/main.c \
+		src/map_checker.c
 OBJ := $(SRC:.c=.o)
 
-CFLAGS := -Wall -Wextra -Werror -Iinclude 
-LDFLAGS := -Llib -lmlx42 -lftprintf -ldl -lglfw -pthread -lm
+CFLAGS := -g -Wall -Wextra -Werror -Iinclude 
+LDFLAGS := -Llib -lmlx42 -lftprintf -lgnl -ldl -lglfw -pthread -lm
 
 .PHONY: all clean fclean re
 
