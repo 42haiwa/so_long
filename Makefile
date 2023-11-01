@@ -1,7 +1,8 @@
 NAME := so_long
 
 SRC := src/main.c \
-		src/map_checker.c
+		src/map_checker.c \
+		src/map_checker2.c
 OBJ := $(SRC:.c=.o)
 
 CFLAGS := -g -Wall -Wextra -Werror -Iinclude 

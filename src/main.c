@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 19:37:24 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 20:14:08 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ int	main(int argc, char *argv[])
 	load_map_in_buffer(&map_buf, argv[1]);
 	if (!check_element(map_buf))
 		return (0);
+	ft_printf("Check element : ✅\n");
 	if (!is_lines_equals(map_buf))
 		return (0);
+	ft_printf("Is lines equals : ✅\n");
+	if (!is_map_closed(map_buf))
+		return (0);
+	ft_printf("Is map closed : ✅\n");
 	ft_printf("%s\n", map_buf);
 	free(map_buf);
 }
