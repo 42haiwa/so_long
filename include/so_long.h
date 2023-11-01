@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 19:14:20 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:38:00 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@
 int	check_element2(char const c, int *has_item,
 		int *has_exit, int *has_spawn);
 int	check_element(char const *map_buf);
+int	is_lines_equals(char const *map_buf);
 
 #endif

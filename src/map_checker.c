@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:12:05 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 19:24:34 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:58:00 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,44 @@ int	check_element(char const *map_buf)
 	if (has_exit && has_spawn && has_item)
 		return (1);
 	return (0);
+}
+
+static int	is_lines_equals2(char c, ssize_t *line_len,
+	ssize_t *last_line_len, int *n)
+{
+	if (c == '\n' && *n > 0)
+		if (*last_line_len != *line_len)
+			return (0);
+	if (c == '\n')
+	{
+		*last_line_len = *line_len;
+		*line_len = 0;
+		(*n)++;
+	}
+	else
+		(*line_len)++;
+	return (1);
+}
+
+int	is_lines_equals(char const *map_buf)
+{
+	ssize_t	line_len;
+	ssize_t	last_line_len;
+	ssize_t	i;
+	int		n;
+
+	line_len = 0;
+	last_line_len = 0;
+	n = 0;
+	i = 0;
+	while (map_buf[i])
+	{
+		if (!is_lines_equals2(map_buf[i], &line_len, &last_line_len, &n))
+		{
+			ft_printf("Error !\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }

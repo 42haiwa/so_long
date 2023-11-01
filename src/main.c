@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 19:13:00 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 19:37:24 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	load_map_in_buffer(&map_buf, argv[1]);
-	check_element(map_buf);
+	if (!check_element(map_buf))
+		return (0);
+	if (!is_lines_equals(map_buf))
+		return (0);
 	ft_printf("%s\n", map_buf);
 	free(map_buf);
 }
