@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 20:14:08 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/01 21:38:37 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ static void	load_map_in_buffer(char **map_buf, char const *path)
 int	main(int argc, char *argv[])
 {
 	char	*map_buf;
+	t_map	map;
 
+	ft_bzero(&map, sizeof(t_map));
 	if (argc != 2)
 	{
 		ft_printf("Usage: ./so_long <map>\n");
@@ -52,6 +54,6 @@ int	main(int argc, char *argv[])
 	if (!is_map_closed(map_buf))
 		return (0);
 	ft_printf("Is map closed : ✅\n");
-	ft_printf("%s\n", map_buf);
+	map_parse(&map, map_buf);
 	free(map_buf);
 }
