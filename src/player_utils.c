@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 03:18:26 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 04:36:40 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:28:13 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	get_player_pos(int *p_x, int *p_y, t_map *map)
 		{
 			if (map->map[y][x] == 'P')
 			{
-				*p_x = x * I_SIZE;
-				*p_y = (y - 1) * I_SIZE;
+				*p_x = (x) * I_SIZE;
+				*p_y = (y) * I_SIZE;
 			}
 			x++;
 		}

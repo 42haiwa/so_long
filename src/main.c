@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 04:35:43 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:33:34 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	start(t_map *map)
 	t_loop_data		data;
 	mlx_texture_t	*texture;
 
+	data.map = map;
 	data.mlx = mlx_init(map->width * I_SIZE, map->height * I_SIZE, TITLE, 0);
 	if (!data.mlx)
 		exit(1);
@@ -83,15 +84,25 @@ static void	start(t_map *map)
 	data.fence_img = mlx_texture_to_image(data.mlx, data.fence_texture);
 	if (!data.fence_img)
 		exit(1);
+	data.egg_texture = mlx_load_png("assets/egg.png");
+	if (!data.egg_texture)
+		exit(1);
+	data.egg_img = mlx_texture_to_image(data.mlx, data.egg_texture);
+	if (!data.egg_img)
+		exit(1);
 
 	get_player_pos(&(data.player.x), &(data.player.y), map);
 	mlx_key_hook(data.mlx, ft_key_hook, &data);
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	map_render(map, &data);
 	mlx_image_to_window(data.mlx, data.player.img,
-		data.player.x, data.player.y);
+		data.player.x - I_SIZE, data.player.y - I_SIZE);
 	mlx_loop(data.mlx);
 
+	mlx_delete_image(data.mlx, data.egg_img);
+	mlx_delete_texture(data.egg_texture);
+	mlx_delete_image(data.mlx, data.fence_img);
+	mlx_delete_texture(data.fence_texture);
 	mlx_delete_image(data.mlx, data.floor_img);
 	mlx_delete_texture(data.floor_texture);
 	mlx_delete_image(data.mlx, data.player.img);

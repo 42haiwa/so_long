@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 04:31:36 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:52:04 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,14 @@ typedef struct s_player
 typedef struct s_loop_data
 {
 	mlx_t			*mlx;
+	t_map			*map;
 	t_player		player;
 	mlx_texture_t	*floor_texture;
 	mlx_image_t		*floor_img;
 	mlx_texture_t	*fence_texture;
 	mlx_image_t		*fence_img;
+	mlx_texture_t	*egg_texture;
+	mlx_image_t		*egg_img;
 }	t_loop_data;
 
 // map_checker.c
@@ -72,10 +75,10 @@ void		ft_key_hook(mlx_key_data_t key, void *param);
 void		get_player_pos(int *p_x, int *p_y, t_map *map);
 
 // player.c
-void		up(t_loop_data *data);
-void		right(t_loop_data *data);
-void		down(t_loop_data *data);
-void		left(t_loop_data *data);
+void		up(t_loop_data *data, int *n);
+void		right(t_loop_data *data, int *n);
+void		down(t_loop_data *data, int *n);
+void		left(t_loop_data *data, int *n);
 
 // map_renderer.c
 void		map_render(t_map *map, t_loop_data *data);
