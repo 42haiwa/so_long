@@ -4,11 +4,14 @@ SRC := src/main.c \
 		src/map_checker.c \
 		src/map_checker2.c \
 		src/map_parser.c \
-		src/hook_manager.c
+		src/utils.c \
+		src/player_utils.c \
+		src/player.c \
+		src/map_renderer.c
 OBJ := $(SRC:.c=.o)
 
-CFLAGS := -g -Wall -Wextra -Werror -Iinclude -I/usr/include -Iinclude/mlx_linux
-LDFLAGS := -Llib -lftprintf -lgnl -Llib/mlx_linux -lmlx_Linux -L/usr/lib -Iinclude/mlx_linux -ldl -pthread -lXext -lX11 -lm -lz
+CFLAGS := -g -Wall -Wextra -Werror -Iinclude
+LDFLAGS := -Llib -lmlx42 -lftprintf -lgnl -ldl -lglfw -pthread -lm
 
 .PHONY: all clean fclean re
 

@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_manager.c                                     :+:      :+:    :+:   */
+/*   map_renderer.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 23:18:40 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 23:22:39 by cjouenne         ###   ########.fr       */
+/*   Created: 2023/11/02 03:55:37 by cjouenne          #+#    #+#             */
+/*   Updated: 2023/11/02 04:40:20 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	_close_by_x(t_vars *vars)
+void		map_render(t_map *map, t_loop_data *data)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_loop_end(vars->mlx);
-	return (0);
-}
+	ssize_t	x;
+	ssize_t	y;
 
-void	hook_manager(t_vars *vars)
-{
-	mlx_hook(vars->win, 17, 0, _close_by_x, vars);
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			mlx_image_to_window(data->mlx, data->floor_img, x * I_SIZE, y * I_SIZE);
+			if (map->map[y][x] == '1')
+				mlx_image_to_window(data->mlx, data->fence_img, x * I_SIZE, y * I_SIZE);
+			x++;
+		}
+		y++;
+	}	
 }

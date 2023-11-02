@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 23:52:37 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 04:35:43 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	load_map_in_buffer(char **map_buf, char const *path)
 	}
 }
 
-static void map_init(t_map *map, int argc, char *argv[])
+static void	map_init(t_map *map, int argc, char *argv[])
 {
 	char	*map_buf;
 
@@ -57,20 +57,53 @@ static void map_init(t_map *map, int argc, char *argv[])
 	free(map_buf);
 }
 
+static void	start(t_map *map)
+{
+	t_loop_data		data;
+	mlx_texture_t	*texture;
+
+	data.mlx = mlx_init(map->width * I_SIZE, map->height * I_SIZE, TITLE, 0);
+	if (!data.mlx)
+		exit(1);
+	texture = mlx_load_png("assets/p00.png");
+	if (!texture)
+		exit(1);
+	data.player.img = mlx_texture_to_image(data.mlx, texture);
+	if (!data.player.img)
+		exit(1);
+	data.floor_texture = mlx_load_png("assets/t023.png");
+	if (!data.floor_texture)
+		exit(1);
+	data.floor_img = mlx_texture_to_image(data.mlx, data.floor_texture);
+	if (!data.floor_img)
+		exit(1);
+	data.fence_texture = mlx_load_png("assets/t012.png");
+	if (!data.fence_texture)
+		exit(1);
+	data.fence_img = mlx_texture_to_image(data.mlx, data.fence_texture);
+	if (!data.fence_img)
+		exit(1);
+
+	get_player_pos(&(data.player.x), &(data.player.y), map);
+	mlx_key_hook(data.mlx, ft_key_hook, &data);
+	mlx_loop_hook(data.mlx, ft_hook, &data);
+	map_render(map, &data);
+	mlx_image_to_window(data.mlx, data.player.img,
+		data.player.x, data.player.y);
+	mlx_loop(data.mlx);
+
+	mlx_delete_image(data.mlx, data.floor_img);
+	mlx_delete_texture(data.floor_texture);
+	mlx_delete_image(data.mlx, data.player.img);
+	mlx_delete_texture(texture);
+	mlx_terminate(data.mlx);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_map	map;
-	t_vars	data;
 
 	map_init(&map, argc, argv);
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (1);
-	data.win = mlx_new_window(data.mlx, map.width * 70, map.height * 70, "so_long");
-	if (!data.win)
-		return (1);
-	hook_manager(&data);
-	mlx_loop(data.mlx);
-	free(data.mlx);
-	map_free(&map);	
+	start(&map);
+	map_free(&map);
 }
