@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 03:55:37 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 12:45:09 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:13:51 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void		map_render(t_map *map, t_loop_data *data)
 				mlx_image_to_window(data->mlx, data->fence_img, x * I_SIZE, y * I_SIZE);
 			if (map->map[y][x] == 'C')
 				mlx_image_to_window(data->mlx, data->egg_img, x * I_SIZE, y * I_SIZE);
+			if (map->map[y][x] == 'E')
+				mlx_image_to_window(data->mlx, data->exit_img, x * I_SIZE, y * I_SIZE);
 			x++;
 		}
 		y++;

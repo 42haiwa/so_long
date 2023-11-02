@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 16:52:04 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:15:12 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_loop_data
 	mlx_image_t		*fence_img;
 	mlx_texture_t	*egg_texture;
 	mlx_image_t		*egg_img;
+	mlx_texture_t	*exit_texture;
+	mlx_image_t		*exit_img;
 }	t_loop_data;
 
 // map_checker.c
@@ -70,6 +72,7 @@ void		map_parse(t_map *map, char const *map_buf);
 // utils.c
 void		ft_hook(void *param);
 void		ft_key_hook(mlx_key_data_t key, void *param);
+void		ft_exit(t_loop_data *data);
 
 // player_utils.c
 void		get_player_pos(int *p_x, int *p_y, t_map *map);

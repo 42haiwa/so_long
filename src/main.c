@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 13:33:34 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:14:39 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ static void	start(t_map *map)
 	data.egg_img = mlx_texture_to_image(data.mlx, data.egg_texture);
 	if (!data.egg_img)
 		exit(1);
+	data.exit_texture = mlx_load_png("assets/exit.png");
+	if (!data.exit_texture)
+		exit(1);
+	data.exit_img = mlx_texture_to_image(data.mlx, data.exit_texture);
+	if (!data.exit_img)
+		exit(1);
 
 	get_player_pos(&(data.player.x), &(data.player.y), map);
 	mlx_key_hook(data.mlx, ft_key_hook, &data);
@@ -98,16 +104,7 @@ static void	start(t_map *map)
 	mlx_image_to_window(data.mlx, data.player.img,
 		data.player.x - I_SIZE, data.player.y - I_SIZE);
 	mlx_loop(data.mlx);
-
-	mlx_delete_image(data.mlx, data.egg_img);
-	mlx_delete_texture(data.egg_texture);
-	mlx_delete_image(data.mlx, data.fence_img);
-	mlx_delete_texture(data.fence_texture);
-	mlx_delete_image(data.mlx, data.floor_img);
-	mlx_delete_texture(data.floor_texture);
-	mlx_delete_image(data.mlx, data.player.img);
-	mlx_delete_texture(texture);
-	mlx_terminate(data.mlx);
+	ft_exit(&data);
 }
 
 int	main(int argc, char *argv[])
