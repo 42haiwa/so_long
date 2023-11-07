@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 02:48:26 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 17:10:19 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/07 14:37:24 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,34 @@ void	ft_exit(t_loop_data *data)
 	//mlx_delete_texture(texture);
 	mlx_terminate(data->mlx);
 	exit(0);
+}
+
+static size_t	get_current_egg(t_loop_data *data)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < data->egg_img->count)
+	{
+		if (data->player.x == data->egg_img->instances[i].x
+			&& data->player.y == data->egg_img->instances[i].y)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
+void	ft_coin(t_loop_data *data)
+{
+	int	p_x;
+	int p_y;
+
+	(void) data;
+	p_x = (data->player.x) / I_SIZE;
+	p_y = (data->player.y) / I_SIZE;
+	data->map->map[p_y][p_x] = '0';
+	data->egg_img->instances[get_current_egg(data)].enabled = 0;
+	ft_printf("coin !\n");
 }
 
 void	ft_key_hook(mlx_key_data_t key, void *param)

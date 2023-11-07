@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 17:15:12 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:44:22 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		map_parse(t_map *map, char const *map_buf);
 void		ft_hook(void *param);
 void		ft_key_hook(mlx_key_data_t key, void *param);
 void		ft_exit(t_loop_data *data);
+void		ft_coin(t_loop_data *data);
 
 // player_utils.c
 void		get_player_pos(int *p_x, int *p_y, t_map *map);
