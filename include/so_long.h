@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/14 03:10:54 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/14 06:47:44 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 	mlx_image_t	*img;
 }	t_player;
 
@@ -63,7 +63,7 @@ typedef struct s_loop_data
 
 // map_checker.c
 int			check_element2(char const c, int *has_item,
-			int *has_exit, int *has_spawn);
+				int	*has_exit, int *has_spawn);
 int			check_element(char const *map_buf);
 int			is_lines_equals(char const *map_buf);
 
@@ -96,8 +96,8 @@ void		map_render(t_map *map, t_loop_data *data);
 void		alloc_image_tex(t_loop_data *data, mlx_texture_t **texture);
 
 // map_exitable.c
-int		is_map_exitable(t_loop_data *data);
+int			is_map_exitable(t_loop_data *data);
 
 // bfs.c
-int		flood_fill(int x, int y, t_map *map, t_flood_fill *fill);
+int			flood_fill(int x, int y, t_map *map, t_flood_fill *fill);
 #endif
