@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/14 03:35:00 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/14 07:05:20 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,31 @@ static void	start(t_map *map)
 	ft_exit(&data);
 }
 
+static void	is_ber(int argc, char **argv)
+{
+	ssize_t	i;
+
+	i = 0;
+	if (argc != 2)
+	{
+		ft_printf("argc error !\n");
+		exit(0);
+	}
+	while (argv[1][i])
+		i++;
+	if (argv[1][i - 1] != 'r' || argv[1][i - 2] != 'e'
+			|| argv[1][i - 3] != 'b' || argv[1][i - 4] != '.')
+	{
+		ft_printf("not .ber !");
+		exit(0);
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_map	map;
 
+	is_ber(argc, argv);
 	map_init(&map, argc, argv);
 	start(&map);
 	map_free(&map);
