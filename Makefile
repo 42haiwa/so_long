@@ -7,7 +7,10 @@ SRC := src/main.c \
 		src/utils.c \
 		src/player_utils.c \
 		src/player.c \
-		src/map_renderer.c
+		src/map_renderer.c \
+		src/alloc_image_tex.c \
+		src/bfs.c \
+		src/map_exitable.c
 OBJ := $(SRC:.c=.o)
 
 CFLAGS := -g -Wall -Wextra -Werror -Iinclude

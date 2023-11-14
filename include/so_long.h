@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:13:38 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/07 12:44:22 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/14 03:10:54 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ typedef struct s_player
 	int	y;
 	mlx_image_t	*img;
 }	t_player;
+
+typedef struct s_flood_fill
+{
+	char	**map;
+}	t_flood_fill;
 
 typedef struct s_loop_data
 {
@@ -86,4 +91,13 @@ void		left(t_loop_data *data, int *n);
 
 // map_renderer.c
 void		map_render(t_map *map, t_loop_data *data);
+
+// alloc_image_tex.c
+void		alloc_image_tex(t_loop_data *data, mlx_texture_t **texture);
+
+// map_exitable.c
+int		is_map_exitable(t_loop_data *data);
+
+// bfs.c
+int		flood_fill(int x, int y, t_map *map, t_flood_fill *fill);
 #endif

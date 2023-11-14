@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 19:12:05 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 19:58:00 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/14 05:07:33 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,10 @@ int	check_element(char const *map_buf)
 	has_item = 0;
 	while (map_buf[i])
 	{
-		if (!check_element2(map_buf[i], &has_item, &has_spawn, &has_exit)
-			|| (!is_valid_element(map_buf[i]) && map_buf[i] != '\n'))
-		{
-			ft_printf("map error !\n");
+		if ((!check_element2(map_buf[i], &has_item, &has_spawn, &has_exit) \
+				|| !is_valid_element(map_buf[i])) \
+				&& map_buf[i] != '\n')
 			return (0);
-		}
 		i++;
 	}
 	if (has_exit && has_spawn && has_item)

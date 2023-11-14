@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 21:14:01 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/01 21:47:04 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/11 13:48:39 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static ssize_t	get_height(char const *map_buf)
 			n++;
 		i++;
 	}
+	if ((i - 1) > 1)
+		if (map_buf[i - 1] != '\n')
+			n++;
 	return (n);
 }
 

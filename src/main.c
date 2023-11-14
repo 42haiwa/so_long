@@ -6,7 +6,7 @@
 /*   By: cjouenne <cjouenne@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:23:56 by cjouenne          #+#    #+#             */
-/*   Updated: 2023/11/02 17:14:39 by cjouenne         ###   ########.fr       */
+/*   Updated: 2023/11/14 03:35:00 by cjouenne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,45 +64,15 @@ static void	start(t_map *map)
 
 	data.map = map;
 	data.mlx = mlx_init(map->width * I_SIZE, map->height * I_SIZE, TITLE, 0);
-	if (!data.mlx)
-		exit(1);
-	texture = mlx_load_png("assets/p00.png");
-	if (!texture)
-		exit(1);
-	data.player.img = mlx_texture_to_image(data.mlx, texture);
-	if (!data.player.img)
-		exit(1);
-	data.floor_texture = mlx_load_png("assets/t023.png");
-	if (!data.floor_texture)
-		exit(1);
-	data.floor_img = mlx_texture_to_image(data.mlx, data.floor_texture);
-	if (!data.floor_img)
-		exit(1);
-	data.fence_texture = mlx_load_png("assets/t012.png");
-	if (!data.fence_texture)
-		exit(1);
-	data.fence_img = mlx_texture_to_image(data.mlx, data.fence_texture);
-	if (!data.fence_img)
-		exit(1);
-	data.egg_texture = mlx_load_png("assets/egg.png");
-	if (!data.egg_texture)
-		exit(1);
-	data.egg_img = mlx_texture_to_image(data.mlx, data.egg_texture);
-	if (!data.egg_img)
-		exit(1);
-	data.exit_texture = mlx_load_png("assets/exit.png");
-	if (!data.exit_texture)
-		exit(1);
-	data.exit_img = mlx_texture_to_image(data.mlx, data.exit_texture);
-	if (!data.exit_img)
-		exit(1);
-
+	alloc_image_tex(&data, &texture);
 	get_player_pos(&(data.player.x), &(data.player.y), map);
 	mlx_key_hook(data.mlx, ft_key_hook, &data);
 	mlx_loop_hook(data.mlx, ft_hook, &data);
 	map_render(map, &data);
 	mlx_image_to_window(data.mlx, data.player.img,
 		data.player.x - I_SIZE, data.player.y - I_SIZE);
+	if (!is_map_exitable(&data))
+		ft_exit(&data);
 	mlx_loop(data.mlx);
 	ft_exit(&data);
 }
